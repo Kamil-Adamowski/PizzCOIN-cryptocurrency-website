@@ -1,5 +1,4 @@
 import { FetchSingleCoin } from './fetchCoin/fetchSingleCoin'
-import { FetchDataChart } from './fetchCoin/fetchDataChart'
 import { useParams } from "react-router-dom";
 
 const SingleCryptocurrency = () => {
