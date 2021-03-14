@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { FetchCryptocurrency } from './fetchData/fetchData'
-import { FetchSupportedCurrencies } from './fetchData/fetchSupportedCurrencies'
 import CoinItem from './Items/CoinItem'
 import { HeaderCell } from './Items/headerCellItem'
 import { useSortableData } from './sortData/useSortableData'
 import{ Dropdown, DropdownItem} from '../dropdown/dropdown'
+
 const AllCoins = () => {
   const [currency, setCurrency] = useState('USD')
   const AllCoin = FetchCryptocurrency(currency).data
@@ -15,8 +15,6 @@ const AllCoins = () => {
   const filteredCoins = items.filter(coin => 
     coin.name.toLowerCase().includes(search.toLowerCase())
   )
-
-    aaa.map(e => console.log(e))
 
   const array = [
     {
