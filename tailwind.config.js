@@ -17,6 +17,13 @@ module.exports = {
         'primary':'#12122f',
         'secondary': '#191c44'
       },
+      fontFamily: {
+        'sans': ['Quicksand']
+      },
+      gradientColorStops: {
+        'gradientPurple': '#722396',
+        'gradientBlue': '#0348E5',
+      },
     },
   },
   variants: {
