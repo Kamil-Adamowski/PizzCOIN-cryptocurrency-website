@@ -8,12 +8,12 @@ const CoinItem = ({currency, item: {id, name, image, symbol, market_cap_rank, cu
         <p className="text-main font-semibold ">{market_cap_rank}</p>
       </td>
       <td className="w-full lg:w-1/4 p-3 lg:table-cell relative lg:static">
-        <div className="w-full flex justify-between lg:justify-start items-center">
+        <div className="w-full flex flex-col justify-center md:flex-row  md:justify-between lg:justify-start items-center">
           <img className="w-12" src={image} alt={`Failed to load ${name} logo`} />
-          <Link to={`/coins/${id}`} className=" lg:pl-8" >
+          <Link to={`/coins/${id}`} className=" lg:pl-8 mt-2 md:mt-0" >
             <h3 className="text-main text-left font-medium">{name}</h3>
           </Link>
-          <h3 className="text-main ml-4 text-left font-medium opacity-50">{symbol.toUpperCase()}</h3>
+          <h3 className="text-main mt-2 md:mt-0 md:ml-4 text-left font-medium opacity-50">{symbol.toUpperCase()}</h3>
         </div>
       </td>
       <td className="w-full lg:w-2/12 p-3 flex items-center justify-center lg:table-cell relative lg:static">
