@@ -1,92 +1,63 @@
 import { useState } from 'react'
+import { BsSearch } from 'react-icons/bs'
 import { FetchCryptocurrency } from './fetchData/fetchData'
 import CoinItem from './Items/CoinItem'
-import { HeaderCell } from './Items/headerCellItem'
+import { HeaderCellItem, HeaderCell } from './Items/headerCellItem'
 import { useSortableData } from './sortData/useSortableData'
-import{ Dropdown, DropdownItem} from '../dropdown/dropdown'
+import{ Dropdown } from '../dropdown/dropdown'
+import CurrencySelection from './currencySelection/currencySelection'
 
 const AllCoins = () => {
+  //current currency selsection
   const [currency, setCurrency] = useState('USD')
-  const AllCoin = FetchCryptocurrency(currency).data
-  const { items, requestSort } = useSortableData(AllCoin);
+  // fetched currency Data
+  const FetchedData = FetchCryptocurrency(currency).data
+  // sorted  fetched data
+  const { items, requestSort } = useSortableData(FetchedData);
+  // currency search in data
   const [search, setSearch] = useState('')
+  // open/close dropdown
   const [open, setOpen] = useState(false)
 
-  const filteredCoins = items.filter(coin => 
+  // all cryptocurrencies with live search and sort
+  const AllCryptocurrencies = items.filter(coin => 
     coin.name.toLowerCase().includes(search.toLowerCase())
   )
 
-  const array = [
-    {
-
-      name:'usd',
-      asd: 'usd'
-    },
-    {
-      name:'pln',
-      asd: 'pln'
-    },
-    {
-      name:'btc',
-      asd: 'btc'
-    },
-    {
-      name:'eur',
-      asd: 'eur'
-    },
-  ]
-
   return (
     <div className="w-full flex flex-col items-center justify-center absolute mt-16 bg-primary">
-      <div className="flex justify-between sm:w-full md:w-4/5 lg:w-3/5">
-        <Dropdown 
+      <div className="flex flex-col-reverse md:justify-between md:flex-row sm:w-full md:w-4/5 lg:w-3/5 mb-8">
+        <Dropdown
           open={open}
-          btnName={currency}
+          btnName={currency.toUpperCase()}
           setOpen={() => setOpen(true)}
           close={() => setOpen(false)}
         >
-        {array.map(e => 
-          <DropdownItem name={e.name} sortType={() => setCurrency(e.asd)} />
-        )}
+          <CurrencySelection setCurrency={setCurrency} />
         </Dropdown>
-        <input 
+        <div className="flex justify-start items-center">
+        <BsSearch className="absolute w-6 h-auto ml-3 text-main pb-7 lg:pb-0"/>
+        <input
           type='text'
           placeholder='Search'
           onChange={e => setSearch(e.target.value)}
-          className="bg-gradient-to-br from-gradientPurple  to-gradientBlue text-xl text-main placeholder-white w-64 h-14 p-3 rounded-lg outline-none "
+          className="bg-gradient-to-br from-gradientPurple  to-gradientBlue text-xl text-main placeholder-white w-64 p-3 h-14 pl-12 rounded-lg outline-none mb-8 lg:mb-0"
         />
+        </div>
       </div>
       <table class="border-collapse sm:w-full md:w-4/5 lg:w-3/5">
         <thead className="border-b-8 border-primary">
         <tr>
-          <HeaderCell 
-            sortType={() => requestSort('market_cap_rank')} 
-            name='ID'
+        {HeaderCell.map(cell => 
+          <HeaderCellItem 
+            sortType={() => requestSort(cell.sortType)} 
+            name={cell.name}
           />
-          <HeaderCell 
-            sortType={() => requestSort('id')} 
-            name='Coin'
-          />
-          <HeaderCell
-            sortType={() => requestSort('current_price')} 
-            name='Price'
-          />
-          <HeaderCell 
-            sortType={() => requestSort('price_change_percentage_24h')} 
-            name='24H%'
-          />
-          <HeaderCell 
-            sortType={() => requestSort('total_volume')} 
-            name='Volume(24h)'
-          />
-          <HeaderCell 
-            sortType={() => requestSort('market_cap')} 
-            name='Mkt Cap'
-          />
+        )}
         </tr>
         </thead>
           <tbody>
-          {filteredCoins.map((coin, key) => 
+          {AllCryptocurrencies.map((coin, key) => 
             <CoinItem currency={currency} item={coin} />
           )}
           </tbody>
