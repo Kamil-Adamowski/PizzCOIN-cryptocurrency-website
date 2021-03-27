@@ -8,6 +8,8 @@ import{ Dropdown } from '../dropdown/dropdown'
 import CurrencySelection from './currencySelection/currencySelection'
 
 const AllCoins = () => {
+
+  const [currencyLimit, setCurrencyLimit] = useState(50)
   //current currency selsection
   const [currency, setCurrency] = useState('USD')
   // fetched currency Data
@@ -18,11 +20,11 @@ const AllCoins = () => {
   const [search, setSearch] = useState('')
   // open/close dropdown
   const [open, setOpen] = useState(false)
-
+  
   // all cryptocurrencies with live search and sort
   const AllCryptocurrencies = items.filter(coin => 
     coin.name.toLowerCase().includes(search.toLowerCase())
-  )
+  ).slice(0, currencyLimit)
 
   return (
     <div className="w-full flex flex-col items-center justify-center absolute mt-16 bg-primary">
@@ -31,7 +33,7 @@ const AllCoins = () => {
           open={open}
           btnName={currency.toUpperCase()}
           setOpen={() => setOpen(true)}
-          close={() => setOpen(false)}
+          setClose={() => setOpen(false)}
         >
           <CurrencySelection setCurrency={setCurrency} />
         </Dropdown>
@@ -58,10 +60,11 @@ const AllCoins = () => {
         </thead>
           <tbody>
           {AllCryptocurrencies.map((coin, key) => 
-            <CoinItem currency={currency} item={coin} />
+            <CoinItem key={key} currency={currency} item={coin} />
           )}
           </tbody>
       </table>
+      <button onClick={()=> setCurrencyLimit(currencyLimit + 10)} class="bg-gradient-to-br from-gradientPurple  to-gradientBlue text-xl text-main w-64 h-14 p-3 rounded-lg focus:outline-none">Load More Coin</button>
     </div>
   )
 }

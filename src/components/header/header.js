@@ -7,7 +7,9 @@ const Header = () => {
       <Link to='/'>
         <Logo className=" w-48"/>
       </Link>
-      <h2 className="text-main" >contact</h2>
+      <Link to='/'>
+        Contact
+      </Link>
     </div>
   )
 }

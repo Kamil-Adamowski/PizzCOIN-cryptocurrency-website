@@ -33,5 +33,5 @@ export const HeaderCell = [
   {
     name: 'Mkt Cap',
     sortType: 'market_cap',
-  }
+  },
 ];
