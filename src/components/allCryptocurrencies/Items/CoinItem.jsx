@@ -11,7 +11,7 @@ const CoinItem = ({currency, item: {id, name, image, symbol, market_cap_rank, cu
       </td>
       <td className="w-full lg:w-1/4 p-3 lg:table-cell relative lg:static">
         <div className="w-full flex flex-col justify-center md:flex-row  md:justify-between lg:justify-start items-center">
-          <img className="w-12" src={image} alt={`Failed to load ${name} logo`}/>
+          <img className="w-12 h-12" src={image} alt={`Failed to load ${name} logo`}/>
           <Link to={`/coins/${id}`} className=" lg:pl-8 mt-2 md:mt-0">
             <h3 className="text-main text-left font-medium">
               {name}

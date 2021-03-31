@@ -1,5 +1,7 @@
 ## PizzCoin
 
+Link to App - https://pizzcoin.netlify.app/
+
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)

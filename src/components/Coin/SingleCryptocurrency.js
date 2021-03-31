@@ -1,31 +1,40 @@
 import { FetchSingleCoin } from './fetchCoin/fetchSingleCoin'
+import CoinChart from './coinChart/coinChart'
 import { useParams } from "react-router-dom";
-
+import GeneralInformatnion from './generalInformatnion/generalInformatnion'
+import AllLinks from './allLinks/allLinks'
 const SingleCryptocurrency = () => {
   let { id } = useParams();
   const data = FetchSingleCoin(id).data
   console.log(data);
+
   return (
-    <div className="pt-12">
-      <h1 className="text-main" >{data.name}</h1>
-      <h1 className="text-main" >Rank #{data.coingecko_rank}</h1>
-      <div>
-        <h3  className="text-main">reddit subscribers: {data.community_data.reddit_subscribers}</h3>
+    <div className="pt-12 w-full flex flex-col justify-center items-center ">
+        <div className='flex flex-col lg:flex-row justify-center w-full'>
+          {data.image !== undefined && 
+            <GeneralInformatnion 
+              name={data.name}
+              symbol={data.symbol}
+              image={data.image.large}
+              liquidityScore={data.liquidity_score}
+              marketRank={data.market_cap_rank}
+              communityScore={data.community_score}
+              genesisDate={data.genesis_date}
+              hashingAlgorithm={data.hashing_algorithm}
+          />
+          }
+          {data.market_data !== undefined && <CoinChart sparkData={data.market_data.sparkline_7d.price} />}
       </div>
-      <div>
-        <h3  className="text-main">Twitter followers: {data.community_data.twitter_followers}</h3>
-      </div>
-      <div>
-        <h2  className="text-main">community_score: {data.community_score}</h2>
-      </div>
-      <div>
-        <h2  className="text-main">genesis_date: {data.genesis_date}</h2>
-      </div>
-      <div>
-        <h2  className="text-main">hashing_algorithm: {data.chashing_algorithm}</h2>
-      </div>
-      <div>
-        <h2  className="text-main">last_updated: {data.last_updated}</h2>
+      <div className='flex justify-center w-full'>
+        {data.links !== undefined &&
+          <AllLinks 
+            blockchainSite={data.links.blockchain_site}
+            homepage={data.links.homepage}
+            officialForum={data.links.official_forum_url}
+            reposGit={data.links.repos_url.github}
+            subreddit={data.links.subreddit_url} 
+          />
+        }
       </div>
     </div>
   )
