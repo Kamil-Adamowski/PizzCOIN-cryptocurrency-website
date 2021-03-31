@@ -1,5 +1,4 @@
 
-
 export const LinkItem = ({link}) => (
   link.map(result => (
     <a

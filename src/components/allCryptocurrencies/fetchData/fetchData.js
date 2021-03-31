@@ -12,8 +12,8 @@ export const FetchCryptocurrency = currency => {
           .then(coin => setData(coin.data))
         return result
       };
-      FetchData();
+      return FetchData();
     },[API])
 
-return { data }
+  return { data }
 }
