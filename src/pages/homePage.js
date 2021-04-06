@@ -24,7 +24,7 @@ const HomePage = () => {
   const [open, setOpen] = useState(false)
   
   // all cryptocurrencies with live search and sort
-  const AllCryptocurrencies = items.filter(coin => 
+  const AllCryptocurrencies = items.filter(coin =>
     coin.name.toLowerCase().includes(search.toLowerCase())
   ).slice(0, currencyLimit)
 
@@ -50,24 +50,33 @@ const HomePage = () => {
         />
         </div>
       </div>
-      <table class="border-collapse sm:w-full md:w-4/5 lg:w-3/5">
+      <table className="border-collapse sm:w-full md:w-4/5 lg:w-3/5">
         <thead className="border-b-8 border-primary">
         <tr>
         {HeaderCell.map(cell => 
           <HeaderCellItem 
             sortType={() => requestSort(cell.sortType)} 
             name={cell.name}
+            key={cell.name}
           />
         )}
         </tr>
         </thead>
           <tbody>
           {AllCryptocurrencies.map((coin, key) => 
-            <CoinItem key={key} currency={currency} item={coin} />
+            <CoinItem 
+              key={key}
+              currency={currency}
+              item={coin} 
+            />
           )}
           </tbody>
       </table>
-      <button onClick={()=> setCurrencyLimit(currencyLimit + 10)} class="bg-gradient-to-br from-gradientPurple  to-gradientBlue text-xl text-main w-64 h-14 p-3 rounded-lg focus:outline-none">Load More Coin</button>
+      <button 
+        onClick={()=> setCurrencyLimit(currencyLimit + 10)} 
+        className="bg-gradient-to-br from-gradientPurple  to-gradientBlue text-xl text-main w-64 h-14 p-3 rounded-lg focus:outline-none">
+          Load More Coin
+      </button>
     </div>
   </div>
   )

@@ -1,10 +1,10 @@
 export const HeaderCellItem = ({sortType, name}) => (
-  <th class="p-3 font-black bg-secondary hidden lg:table-cell">
+  <th className="p-3 font-black bg-secondary hidden lg:table-cell">
     <button
       className="text-main font-bold"
       type="button" 
       onClick={sortType}>
-    {name}
+        {name}
     </button>
   </th>
 );

@@ -1,3 +1,4 @@
+import { InfoItem } from '../InfoItem/InfoItem'
 
 const GeneralInformatnion = ({
   name,
@@ -12,34 +13,34 @@ const GeneralInformatnion = ({
   <div className=" bg-secondary w-full lg:w-2/3 2xl:w-1/3 flex-col md:flex-row flex p-4 justify-around items-center">
     <img src={image} alt={`icon ${name}`} />
     <div className="mt-10 lg:mt-0">
-      <h1 className="text-main pb-2">
-        <strong>Rank: </strong>
-        {marketRank}
-      </h1>
-      <h1 className="text-main pb-2">
-        <strong>Community score: </strong> 
-        {communityScore}
-      </h1>
-      <h1 className="text-main pb-2">
-        <strong>Name: </strong> 
-        {name}
-      </h1>
-      <h3 className="text-main pb-2">
-        <strong>Symbol: </strong> 
-        {symbol}
-      </h3>
-      <h3 className="text-main pb-2">
-        <strong>Liquidity score: </strong> 
-        {liquidityScore}
-      </h3>
-      <h3 className="text-main pb-2">
-        <strong>Genesis date: </strong> 
-        {genesisDate}
-      </h3>
-      <h3 className="text-main pb-2">
-        <strong>Hashing algorithm: </strong>
-        {hashingAlgorithm !== null ? hashingAlgorithm : <span>???</span>}
-      </h3>
+      <InfoItem 
+        itemId={marketRank} 
+        name='Rank: ' 
+      />
+      <InfoItem 
+        itemId={communityScore} 
+        name='Community score: ' 
+      />
+      <InfoItem 
+        itemId={name} 
+        name='Name: ' 
+      />
+      <InfoItem 
+        itemId={symbol} 
+        name='Symbol: ' 
+      />
+      <InfoItem 
+        itemId={liquidityScore} 
+        name='iquidity score: ' 
+      />
+      <InfoItem 
+        itemId={genesisDate} 
+        name='Genesis date: ' 
+      />
+      <InfoItem 
+        itemId={hashingAlgorithm !== null ? hashingAlgorithm : '???'}
+        name='Hashing algorithm: ' 
+      />
     </div>
   </div>
 )
