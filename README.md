@@ -33,4 +33,4 @@ $ npm start or
 * Cryptocurrency site
 
 ## Status
-Project is: in progress!
+Project is: Complete!
